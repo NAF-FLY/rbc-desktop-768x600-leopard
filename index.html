@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=768, height=600, initial-scale=1.0" />
+  <meta name="ad.size" content="width=768,height=600" />
+  <script type="text/javascript" src="https://ds.serving-sys.ru/BurstingScript/EBLoader.js"></script>
+  <title>RBC Desktop 768x600 Leopard</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 768px;
+      height: 600px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .banner {
+      display: block;
+      position: relative;
+      width: 768px;
+      height: 600px;
+      overflow: hidden;
+      background: #fff;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .layer {
+      position: absolute;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    .bg {
+      left: 0;
+      top: 0;
+      width: 768px;
+      height: 600px;
+    }
+
+    .bottom-fade {
+      left: 0;
+      bottom: 0;
+      width: 768px;
+      height: 228px;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .2) 38%, rgba(0, 0, 0, .6) 100%);
+    }
+
+    .corner-logo {
+      right: 25px;
+      bottom: 25px;
+      width: 142.35px;
+      height: 104.92px;
+      z-index: 3;
+      opacity: 1;
+      will-change: opacity;
+      animation: cornerLogoFade .35s ease-out 1.05s forwards;
+    }
+
+    .final-fade {
+      inset: 0;
+      z-index: 10;
+      background: #000;
+      opacity: 0;
+      animation: finalFade .55s ease-out 7.85s forwards;
+    }
+
+    .final-screen {
+      inset: 0;
+      z-index: 11;
+      opacity: 0;
+      animation: finalScreenReveal .7s ease-out 8.2s forwards;
+    }
+
+    .final-screen-logo {
+      left: 50%;
+      top: 214px;
+      width: 150px;
+      height: 110px;
+      transform: translate3d(-50%, 18px, 0);
+      opacity: 0;
+      animation: finalScreenLogo .75s cubic-bezier(.22, .72, .2, 1) 8.22s forwards;
+    }
+
+    .final-screen-copy {
+      left: 50%;
+      bottom: 28px;
+      width: 640px;
+      transform: translateX(-50%);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.12;
+      font-weight: 400;
+      text-align: center;
+      color: #fff;
+      opacity: 0;
+      animation: finalScreenText .75s ease-out 8.32s forwards;
+    }
+
+    .boss,
+    .leopard {
+      display: block;
+      transform-style: preserve-3d;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      contain: paint;
+    }
+
+    .boss {
+      left: -1555px;
+      top: -53px;
+      width: 1028px;
+      height: 1316px;
+      transform: translate3d(664px, 920px, 0) scale3d(3, 3, 1);
+      transform-origin: center center;
+      animation: bossAnim 4s forwards;
+    }
+
+    .leopard {
+      left: 1357px;
+      top: 639px;
+      width: 486px;
+      height: 797px;
+      transform: translate3d(-796px, 184px, 0) scale3d(3, 3, 1);
+      transform-origin: center center;
+      animation: leopardAnim 4s forwards;
+    }
+
+    .offer-card,
+    .bottom-panel-glow,
+    .cta-button,
+    .disclaimer {
+      position: absolute;
+      z-index: 5;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
+    }
+
+    .bottom-panel-glow {
+      left: 0;
+      bottom: 0;
+      width: 768px;
+      height: 152px;
+      background: linear-gradient(180deg, rgba(115, 120, 130, 0) 0%, rgba(115, 120, 130, .88) 100%);
+      opacity: 0;
+      z-index: 2;
+      transform: translate3d(0, 48px, 0);
+      animation: bottomPanelGlowReveal 1s cubic-bezier(.2, .8, .2, 1) 1.5s forwards;
+    }
+
+    .offer-card {
+      left: 13px;
+      bottom: 57px;
+      width: 744px;
+      height: 207px;
+      margin-left: 0;
+      padding: 22px 28px 20px;
+      border-radius: 28px;
+      background: #000;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .24);
+      transform: translate3d(0, 272px, 0);
+      animation:
+        cardReveal 1.15s cubic-bezier(.2, .8, .2, 1) 1.5s forwards,
+        cardLift 1.2s cubic-bezier(.22, .7, .2, 1) 4.9s forwards;
+    }
+
+    .offer-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .offer-title {
+      margin: 0;
+      width: 502px;
+      height: 114px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .title-row {
+      position: relative;
+      left: 0;
+      width: 502px;
+      overflow: hidden;
+    }
+
+    .title-row.row-1 {
+      height: 48px;
+    }
+
+    .title-row.row-2 {
+      height: 61px;
+    }
+
+    .title-face {
+      position: absolute;
+      inset: 0;
+      display: block;
+    }
+
+    .title-face img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      width: auto;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .title-row.row-1 .title-face.current img {
+      height: 41px;
+    }
+
+    .title-row.row-1 .title-face.next img {
+      height: 48px;
+    }
+
+    .title-row.row-2 .title-face.current img {
+      height: 48px;
+    }
+
+    .title-row.row-2 .title-face.next img {
+      height: 61px;
+    }
+
+    .title-face.current {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+      animation:
+        titleCurrentEnter 1.28s cubic-bezier(.22, .61, .36, 1) forwards,
+        titleCurrentFlip 1.12s cubic-bezier(.22, .61, .36, 1) forwards;
+    }
+
+    .title-face.next {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+      animation: titleNextFlip 1.12s cubic-bezier(.22, .61, .36, 1) forwards;
+    }
+
+    .title-row.row-1 .title-face.current {
+      animation-delay: 2.38s, 4.98s;
+    }
+
+    .title-row.row-2 .title-face.current {
+      animation-delay: 2.38s, 5.12s;
+    }
+
+    .title-row.row-1 .title-face.next {
+      animation-delay: 4.98s;
+    }
+
+    .title-row.row-2 .title-face.next {
+      animation-delay: 5.12s;
+    }
+
+    .offer-bottom {
+      position: absolute;
+      right: 10px;
+      bottom: 4px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .t2-logo {
+      display: block;
+      width: 150px;
+      height: 110px;
+      object-fit: contain;
+      opacity: 0;
+      transform: translate3d(0, 24px, 0) scale(.92);
+      transform-origin: 50% 100%;
+      animation: logoReveal .82s cubic-bezier(.2, .8, .2, 1) 2.62s forwards;
+    }
+
+    .t2-logo:not([src]),
+    .final-screen-logo:not([src]) {
+      visibility: hidden;
+    }
+
+    .cta-button {
+      left: 25px;
+      bottom: 57px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 717px;
+      height: 77px;
+      margin-left: 0;
+      border: 0;
+      border-radius: 999px;
+      background: #FF3495;
+      transform: translate3d(0, 110px, 0);
+      opacity: 0;
+      animation: buttonReveal 1.1s cubic-bezier(.22, .7, .2, 1) 4.9s forwards;
+    }
+
+    .cta-button img {
+      display: block;
+      width: 228px;
+      height: auto;
+    }
+
+    .disclaimer {
+      left: 13px;
+      bottom: 15px;
+      z-index: 6;
+      width: 736px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 1.12;
+      color: rgba(255, 255, 255, .96);
+      text-align: left;
+      transform: none;
+    }
+
+    @keyframes leopardAnim {
+      from {
+        transform: translate3d(-796px, 184px, 0) scale3d(3, 3, 1);
+        animation-timing-function: cubic-bezier(.3, 0, .7, .15);
+      }
+
+      25% {
+        transform: translate3d(-802px, 158px, 0) scale3d(2.93, 2.93, 1);
+        animation-timing-function: linear;
+      }
+
+      to {
+        transform: translate3d(-961px, -563px, 0) scale3d(1, 1, 1);
+      }
+    }
+
+    @keyframes bossAnim {
+      from {
+        transform: translate3d(664px, 920px, 0) scale3d(3, 3, 1);
+        animation-timing-function: cubic-bezier(.3, 0, .7, .15);
+      }
+
+      25% {
+        transform: translate3d(685px, 888px, 0) scale3d(2.93, 2.93, 1);
+        animation-timing-function: linear;
+      }
+
+      to {
+        transform: translate3d(1295px, -29px, 0) scale3d(1, 1, 1);
+      }
+    }
+
+    @keyframes cardReveal {
+      from {
+        transform: translate3d(0, 272px, 0);
+      }
+
+      to {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes cardLift {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: translate3d(0, -86px, 0);
+      }
+    }
+
+    @keyframes bottomPanelGlowReveal {
+      from {
+        transform: translate3d(0, 48px, 0);
+        opacity: 0;
+      }
+
+      to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes buttonReveal {
+      from {
+        transform: translate3d(0, 110px, 0);
+        opacity: 0;
+      }
+
+      to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes logoReveal {
+      from {
+        transform: translate3d(0, 24px, 0) scale(.92);
+        opacity: 0;
+      }
+
+      to {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes titleCurrentEnter {
+      0% {
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes titleCurrentFlip {
+      0% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate3d(0, -115%, 0);
+        opacity: 0;
+      }
+    }
+
+    @keyframes titleNextFlip {
+      0% {
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes cornerLogoFade {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    @keyframes finalFade {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes finalScreenReveal {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes finalScreenLogo {
+      from {
+        transform: translate3d(-50%, 18px, 0);
+        opacity: 0;
+      }
+
+      to {
+        transform: translate3d(-50%, 0, 0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes finalScreenText {
+      from {
+        transform: translate3d(-50%, 10px, 0);
+        opacity: 0;
+      }
+
+      to {
+        transform: translate3d(-50%, 0, 0);
+        opacity: 0.7;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="banner" id="button1" href="%banner.reference_mrc_user1%" target="%banner.target%" aria-label="RBC Desktop 768x600 Leopard">
+    <img class="layer bg" src="bg.png" alt="" />
+    <img class="layer boss" src="boss.png" alt="" />
+    <img class="layer leopard" src="leopard.png" alt="" />
+    <img class="layer corner-logo" src="logo.png" alt="" aria-hidden="true" />
+    <div class="layer bottom-fade" aria-hidden="true"></div>
+    <div class="bottom-panel-glow" aria-hidden="true"></div>
+    <div class="offer-card">
+      <div class="offer-card-inner">
+        <div class="offer-title" aria-label="headline animation">
+          <span class="title-row row-1">
+            <span class="title-face current">
+              <img src="headline-current-top-ru.svg" alt="" aria-hidden="true" />
+            </span>
+            <span class="title-face next">
+              <img src="headline-next-top-ru.svg" alt="" aria-hidden="true" />
+            </span>
+          </span>
+          <span class="title-row row-2">
+            <span class="title-face current">
+              <img src="headline-current-bottom-ru.svg" alt="" aria-hidden="true" />
+            </span>
+            <span class="title-face next">
+              <img src="headline-next-bottom-ru.svg" alt="" aria-hidden="true" />
+            </span>
+          </span>
+        </div>
+        <div class="offer-bottom">
+          <img class="t2-logo" data-gif-src="logotype.gif" data-gif-trigger="title-start" alt="" aria-hidden="true" />
+        </div>
+      </div>
+    </div>
+    <div class="cta-button">
+      <img src="cta-more-ru.svg" alt="Подробнее" />
+    </div>
+    <div class="disclaimer">Реклама. Рекламодатель: ООО «Т2 Мобайл», Россия, 108811, г. Москва, п. Московский, <br/> Киевское шоссе, 22-й километр, д. 6, стр. 1, ОГРН: 1137746610088, ИНН: 7743895280, t2.ru | 0+</div>
+    <div class="layer final-fade" aria-hidden="true"></div>
+    <div class="layer final-screen" aria-hidden="true">
+      <img class="layer final-screen-logo" data-gif-src="logotype.gif" data-gif-delay="8220" alt="" aria-hidden="true" />
+      <div class="layer final-screen-copy">Реклама. Рекламодатель: ООО «Т2 Мобайл», Россия, 108811, г. Москва, п. Московский, Киевское&nbsp;шоссе, 22-й километр, д. 6, стр. 1, ОГРН: 1137746610088, ИНН: 7743895280, t2.ru | 0+<br />Подробнее о реферальной программе на t2.ru</div>
+    </div>
+  </a>
+  <script>
+    (function () {
+      var button = document.getElementById('button1');
+      var banner = document.querySelector('.banner');
+      var titleTrigger = document.querySelector('.title-row.row-1 .title-face.current');
+      var gifPlayers = document.querySelectorAll('[data-gif-src]');
+      var adStarted = false;
+      var GIF_START_ADVANCE_MS = 180;
+
+      if (!button || !banner) {
+        return;
+      }
+
+      function startGif(player) {
+        var src = player.getAttribute('data-gif-src');
+        var separator;
+
+        if (!src || player.getAttribute('data-gif-started') === 'true') {
+          return;
+        }
+
+        separator = src.indexOf('?') === -1 ? '?' : '&';
+        player.setAttribute('src', src + separator + 'play=' + Date.now());
+        player.setAttribute('data-gif-started', 'true');
+      }
+
+      function getFirstAnimationDelayMs(element) {
+        var animationDelay;
+        var firstDelay;
+        var value;
+
+        if (!element) {
+          return null;
+        }
+
+        animationDelay = window.getComputedStyle(element).animationDelay || '';
+        firstDelay = animationDelay.split(',')[0];
+
+        if (!firstDelay) {
+          return null;
+        }
+
+        value = firstDelay.trim();
+
+        if (value.slice(-2) === 'ms') {
+          return Number(value.slice(0, -2));
+        }
+
+        if (value.slice(-1) === 's') {
+          return Number(value.slice(0, -1)) * 1000;
+        }
+
+        return null;
+      }
+
+      function initGifPlayers() {
+        var titleStartDelay;
+
+        if (!gifPlayers.length) {
+          return;
+        }
+
+        titleStartDelay = getFirstAnimationDelayMs(titleTrigger);
+
+        gifPlayers.forEach(function (player) {
+          var trigger = player.getAttribute('data-gif-trigger');
+          var delay = Number(player.getAttribute('data-gif-delay')) || 0;
+
+          if (trigger === 'title-start') {
+            return;
+          }
+
+          window.setTimeout(function () {
+            startGif(player);
+          }, Math.max(delay - GIF_START_ADVANCE_MS, 0));
+        });
+
+        if (titleTrigger) {
+          if (titleStartDelay !== null) {
+            window.setTimeout(function () {
+              gifPlayers.forEach(function (player) {
+                if (player.getAttribute('data-gif-trigger') === 'title-start') {
+                  startGif(player);
+                }
+              });
+            }, Math.max(titleStartDelay - GIF_START_ADVANCE_MS, 0));
+          } else {
+            titleTrigger.addEventListener('animationstart', function (event) {
+              if (event.animationName === 'titleCurrentEnter') {
+                gifPlayers.forEach(function (player) {
+                  if (player.getAttribute('data-gif-trigger') === 'title-start') {
+                    startGif(player);
+                  }
+                });
+              }
+            }, { once: true });
+          }
+        }
+      }
+
+      function getClickTag() {
+        if (typeof window.clickTag === 'string' && window.clickTag) return window.clickTag;
+        var params = new URLSearchParams(window.location.search);
+        return params.get('clickTag') || params.get('clickTAG') || '';
+      }
+
+      function hasEB() {
+        return Boolean(
+          window.EB &&
+          window.EBG &&
+          window.EBG.EventName &&
+          window.EBG.EventName.EB_INITIALIZED &&
+          typeof window.EB.isInitialized === 'function' &&
+          typeof window.EB.clickthrough === 'function'
+        );
+      }
+
+      function clickthrough1(event) {
+        if (hasEB()) {
+          event.preventDefault();
+          window.EB.clickthrough();
+          return;
+        }
+
+        var href = button.getAttribute('href') || '';
+        if (!href || href.indexOf('%banner.') === 0) {
+          event.preventDefault();
+        }
+      }
+
+      function startAd() {
+        var currentHref;
+        var clickTag;
+
+        if (adStarted) {
+          return;
+        }
+
+        adStarted = true;
+        currentHref = button.getAttribute('href') || '';
+        clickTag = getClickTag();
+
+        if (clickTag && (!currentHref || currentHref.indexOf('%banner.') === 0)) {
+          button.setAttribute('href', clickTag);
+          button.setAttribute('target', '_blank');
+          button.setAttribute('rel', 'noopener');
+        }
+
+        button.addEventListener('click', clickthrough1);
+      }
+
+      function initEB() {
+        initGifPlayers();
+
+        if (hasEB()) {
+          if (!window.EB.isInitialized()) {
+            window.EB.addEventListener(window.EBG.EventName.EB_INITIALIZED, startAd);
+          } else {
+            startAd();
+          }
+          return;
+        }
+
+        startAd();
+      }
+
+      window.addEventListener('load', initEB);
+    })();
+  </script>
+</body>
+</html>
