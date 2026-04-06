@@ -79,9 +79,9 @@
 
     .final-screen-logo {
       left: 50%;
-      top: 214px;
-      width: 150px;
-      height: 110px;
+      top: 162px;
+      width: 347.66px;
+      height: 256.03px;
       transform: translate3d(-50%, 18px, 0);
       opacity: 0;
       animation: finalScreenLogo .75s cubic-bezier(.22, .72, .2, 1) 8.22s forwards;
@@ -113,23 +113,23 @@
     }
 
     .boss {
-      left: -1555px;
-      top: -53px;
-      width: 1028px;
-      height: 1316px;
-      transform: translate3d(664px, 920px, 0) scale3d(3, 3, 1);
+      left: -1028px;
+      top: -33px;
+      width: 1536px;
+      height: 1200px;
+      transform: translate3d(132px, 255px, 0) scale3d(2, 2, 1);
       transform-origin: center center;
-      animation: bossAnim 4s forwards;
+      animation: bossAnim 7.85s forwards;
     }
 
     .leopard {
-      left: 1357px;
-      top: 639px;
-      width: 486px;
-      height: 797px;
-      transform: translate3d(-796px, 184px, 0) scale3d(3, 3, 1);
+      left: 165px;
+      top: 33px;
+      width: 757px;
+      height: 1069px;
+      transform: translate3d(89px, 234px, 0) scale3d(1.5, 1.5, 1);
       transform-origin: center center;
-      animation: leopardAnim 4s forwards;
+      animation: leopardAnim 7.85s forwards;
     }
 
     .offer-card,
@@ -328,33 +328,23 @@
 
     @keyframes leopardAnim {
       from {
-        transform: translate3d(-796px, 184px, 0) scale3d(3, 3, 1);
-        animation-timing-function: cubic-bezier(.3, 0, .7, .15);
-      }
-
-      25% {
-        transform: translate3d(-802px, 158px, 0) scale3d(2.93, 2.93, 1);
-        animation-timing-function: linear;
+        transform: translate3d(89px, 234px, 0) scale3d(1.5, 1.5, 1);
+        animation-timing-function: cubic-bezier(.12, .72, .16, 1);
       }
 
       to {
-        transform: translate3d(-961px, -563px, 0) scale3d(1, 1, 1);
+        transform: translate3d(39px, -230px, 0) scale3d(.4908, .4908, 1);
       }
     }
 
     @keyframes bossAnim {
       from {
-        transform: translate3d(664px, 920px, 0) scale3d(3, 3, 1);
-        animation-timing-function: cubic-bezier(.3, 0, .7, .15);
-      }
-
-      25% {
-        transform: translate3d(685px, 888px, 0) scale3d(2.93, 2.93, 1);
-        animation-timing-function: linear;
+        transform: translate3d(132px, 255px, 0) scale3d(2, 2, 1);
+        animation-timing-function: cubic-bezier(.12, .72, .16, 1);
       }
 
       to {
-        transform: translate3d(1295px, -29px, 0) scale3d(1, 1, 1);
+        transform: translate3d(644px, -267px, 0) scale3d(.5, .5, 1);
       }
     }
 
