@@ -119,7 +119,7 @@
       height: 1200px;
       transform: translate3d(132px, 255px, 0) scale3d(2, 2, 1);
       transform-origin: center center;
-      animation: bossAnim 9.6s forwards;
+      animation: bossAnim 8.6s forwards;
     }
 
     .leopard {
@@ -129,7 +129,7 @@
       height: 1069px;
       transform: translate3d(89px, 234px, 0) scale3d(1.5, 1.5, 1);
       transform-origin: center center;
-      animation: leopardAnim 9.6s forwards;
+      animation: leopardAnim 8.6s forwards;
     }
 
     .offer-card,
@@ -152,7 +152,7 @@
       opacity: 0;
       z-index: 2;
       transform: translate3d(0, 48px, 0);
-      animation: bottomPanelGlowReveal 1s cubic-bezier(.2, .8, .2, 1) 1.5s forwards;
+      animation: bottomPanelGlowReveal 1s cubic-bezier(.2, .8, .2, 1) 2s forwards;
     }
 
     .offer-card {
@@ -166,7 +166,7 @@
       overflow: hidden;
       transform: translate3d(0, 0, 0);
       animation:
-        cardLift .8s cubic-bezier(.22, .7, .2, 1) 5.5s forwards;
+        cardLift .8s cubic-bezier(.22, .7, .2, 1) 6s forwards;
     }
 
     .offer-card::before {
@@ -177,7 +177,7 @@
       background: #000;
       box-shadow: 0 18px 44px rgba(0, 0, 0, .24);
       clip-path: inset(100% 0 0 0 round 28px);
-      animation: cardReveal .9s cubic-bezier(.33, 1, .68, 1) 1.5s forwards;
+      animation: cardReveal .9s cubic-bezier(.33, 1, .68, 1) 2s forwards;
     }
 
     .offer-card-inner {
@@ -264,19 +264,19 @@
     }
 
     .title-row.row-1 .title-face.current {
-      animation-delay: 2.05s, 5.5s;
+      animation-delay: 2.55s, 6s;
     }
 
     .title-row.row-2 .title-face.current {
-      animation-delay: 2.17s, 5.5s;
+      animation-delay: 2.67s, 6s;
     }
 
     .title-row.row-1 .title-face.next {
-      animation-delay: 5.5s;
+      animation-delay: 6s;
     }
 
     .title-row.row-2 .title-face.next {
-      animation-delay: 5.5s;
+      animation-delay: 6s;
     }
 
     .offer-bottom {
@@ -296,7 +296,7 @@
       opacity: 0;
       transform: translate3d(0, 24px, 0) scale(.92);
       transform-origin: 50% 100%;
-      animation: logoReveal .82s cubic-bezier(.2, .8, .2, 1) 2.34s forwards;
+      animation: logoReveal .82s cubic-bezier(.2, .8, .2, 1) 2.84s forwards;
     }
 
     .t2-logo:not([src]),
@@ -322,7 +322,7 @@
       border-radius: 999px;
       background: #FF3495;
       clip-path: inset(100% 0 0 0 round 999px);
-      animation: buttonReveal .8s cubic-bezier(.22, .7, .2, 1) 5.5s forwards;
+      animation: buttonReveal .8s cubic-bezier(.22, .7, .2, 1) 6s forwards;
     }
 
     .cta-button-content {
@@ -332,7 +332,7 @@
       align-items: center;
       justify-content: center;
       clip-path: inset(100% 0 0 0 round 999px);
-      animation: buttonReveal .8s cubic-bezier(.22, .7, .2, 1) 5.5s forwards;
+      animation: buttonReveal .8s cubic-bezier(.22, .7, .2, 1) 6s forwards;
     }
 
     .cta-button img {
@@ -355,23 +355,33 @@
     }
 
     @keyframes leopardAnim {
-      from {
+      0% {
         transform: translate3d(89px, 234px, 0) scale3d(1.5, 1.5, 1);
-        animation-timing-function: cubic-bezier(.12, .72, .16, 1);
+        animation-timing-function: cubic-bezier(.22, .12, .38, 1);
       }
 
-      to {
-        transform: translate3d(39px, -230px, 0) scale3d(.4908, .4908, 1);
+      10.4% {
+        transform: translate3d(82px, 198px, 0) scale3d(1.42, 1.42, 1);
+        animation-timing-function: cubic-bezier(.16, .68, .16, 1);
+      }
+
+      100% {
+        transform: translate3d(39px, -255px, 0) scale3d(.4908, .4908, 1);
       }
     }
 
     @keyframes bossAnim {
-      from {
+      0% {
         transform: translate3d(132px, 255px, 0) scale3d(2, 2, 1);
-        animation-timing-function: cubic-bezier(.12, .72, .16, 1);
+        animation-timing-function: cubic-bezier(.22, .12, .38, 1);
       }
 
-      to {
+      10.4% {
+        transform: translate3d(158px, 226px, 0) scale3d(1.92, 1.92, 1);
+        animation-timing-function: cubic-bezier(.16, .68, .16, 1);
+      }
+
+      100% {
         transform: translate3d(644px, -267px, 0) scale3d(.5, .5, 1);
       }
     }
@@ -552,7 +562,7 @@
           </span>
         </div>
         <div class="offer-bottom">
-          <img class="t2-logo" data-gif-src="logotype.gif" data-gif-delay="2340" alt="" aria-hidden="true" />
+          <img class="t2-logo" data-gif-src="logotype.gif" data-gif-delay="2840" alt="" aria-hidden="true" />
         </div>
       </div>
     </div>
